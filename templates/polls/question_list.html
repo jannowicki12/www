@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+<table>
+    <tr>
+        <th>pytanie</th>
+        <th>tresc</th>
+        <th>data</th>
+    </tr>
+    {% for question in question %}
+        <tr>
+            <td>{{question.pk}}</td>
+            <td><a href="{% url 'queston_detail' question.id %}">{{question}}</td>
+            <td>{{question.pub_date}}</td>
+        </tr>
+    {% endfor %}
 
-<body>
-<div>
-   {% for question in questions %}
-       <li><a href="{% url 'polls:question_detail' question.id %}">{{ question.question_text }}</a></li>
 
-   {% endfor %}
-</div>
-</body>
-</html>
+</table>
+<a href="{% url 'question-add' %}">Dodaj nowe pytanie</a>

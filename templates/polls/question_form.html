@@ -1,0 +1,10 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+<h2>Dodaj nowe pytanie</h2>
+<form method="post">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <input type="submit" value="Zapisz">
+</form>
+<a href="{% url 'choice-add' %}">Dodaj opcję odpowiedzi</a>

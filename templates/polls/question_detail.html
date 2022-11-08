@@ -1,7 +1,16 @@
-<h1>Geee</h1>
-<h1>{{ question.question_text }}</h1>
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }}</li>
-{% endfor %}
-</ul>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+<table>
+    <tr>
+        <th>pytanie</th>
+        <th>tresc</th>
+        <th>data</th>
+    </tr>
+    <tr>
+        <td>{{question.pytanie}}</td>
+        <td>{{question}}</td>
+        <td>{{question.data}}</td>
+        <td>{{question.votes}}</td>
+    </tr>   
+</table>
+
