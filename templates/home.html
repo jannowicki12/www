@@ -1,15 +1,46 @@
 {% extends 'base_bulma.html' %}
 
-
 {% block title %}Ordering App{% endblock title %}
-{% block h1 %}Homepage{% endblock h1 %}
+
 
 {% block main %}
-  <div style="float:right;" ><a class='button is-right' href="{% url 'login' %}">Log in</a></div>
+  {% if user.is_anonymous %}
+    <div style="float:right;" ><a class='button is-right' href="{% url 'login' %}">Log in</a></div>
+  {% else %}
+    <div style="float:right;" ><a class='button is-right' href="{% url 'logout' %}">Log out: {{ user.username}}</a></div>
 
-  <ul>
-    <li><a href="{% url 'customer_table' %}">Customers</a></li>
-    <li>Items</li>
-    <li>Orders</li>
-  </ul>
+  {% endif %}
+  <div class="container" style="margin: 10px 10vh;">
+      <p style="font-size: 300%;">Homepage</p>
+    <div class="field">
+      <label class="label">Customers section</label>
+      <div class="control">
+        <button class="button">
+          <a href="{% url 'customer_table' %}">Customers</a>
+        </button>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label">Sellers section</label>
+      <div class="control">
+        <button class="button">
+          <a href="{% url 'sellers_table' %}">Sellers</a>
+        </button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Items section</label>
+      <div class="control">
+        <button class="button">
+          <a href="{% url 'item_create' %}">New item</a>
+        </button>
+        <button class="button">
+          <a href="{% url 'items_table' %}">Item list</a>
+        </button>
+      </div>
+    </div>
+  </div>
+  
 {% endblock main %}

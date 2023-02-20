@@ -9,7 +9,7 @@
     <thead>
       <tr>
         <th colspan="4"></th>
-        <th colspan="5">Address</th>
+        <th colspan="6">Address</th>
       </tr>
       <tr>
         <th>ID</th>
@@ -21,6 +21,7 @@
         <th>State</th>
         <th>ZIP Code</th>
         <th>Country</th>
+        <th>Role</th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
           <td>{{ customer.state }}</td>
           <td>{{ customer.zip_code }}</td>
           <td>{{ customer.country }}</td>
+          <td>{{ customer.role }}</td>
         </tr>
       {% endfor %}
     </tbody>

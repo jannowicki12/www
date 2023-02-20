@@ -7,9 +7,16 @@ from .managers import CustomUserManager
 class User(AbstractUser):
     PH = 'ph'
     PL = 'pl'
+    US = 'us'
+    UK = 'uk'
+    CA = 'ca'
+    
     COUNTRY_CHOICES = (
         (PH, 'Philippines'),
         (PL, 'Poland'),
+        (US, 'United States'),
+        (UK, 'United Kingdom'),
+        (CA, 'Canada'),
     )
 
     ADMIN = 1

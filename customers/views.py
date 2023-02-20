@@ -13,19 +13,24 @@ def customer_list(request):
 
 
 def customer_table(request):
-    customers = User.objects.all()
+    customers = User.objects.filter(role=User.CUSTOMER)
     context = {
         'customers': customers,
     }
     return render(request, 'customers/customer_table.html', context=context)
 
 
+from django.core.exceptions import PermissionDenied
 def home(request):
+    if request.user.is_anonymous:
+        raise PermissionDenied
     return render(request, 'home.html')
 
 
 def customer_create(request):
-    data = {}
+    data = {
+        'countries': User.COUNTRY_CHOICES,
+    }
     if request.method == 'POST':
         data['first_name'] = request.POST.get('first_name')
         data['last_name'] = request.POST.get('last_name')
@@ -34,8 +39,10 @@ def customer_create(request):
         data['state'] = request.POST.get('state', '')
         data['zip_code'] = request.POST.get('zip_code', '')
         data['country'] = request.POST.get('country', '')
+        print(data['country'])
         data['username'] = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        print(data.pop('countries'))
         customer = User(**data)
 
         # make first and last name required
@@ -92,3 +99,10 @@ def customer_update(request, pk):
             data['errors'] = 'First Name and Last Name fields are required'
 
     return render(request, 'customers/customer_update.html', context=data)
+
+from django.http import HttpResponse
+def seller_table(request):
+    sellers = User.objects.filter(role=User.SELLER)
+    return HttpResponse(sellers)
+
+

@@ -52,8 +52,10 @@
         <th><label>Country</label></th>
         <td>
           <select name="country">
-            <option selected value="ph">Philippines</option>
-            <option value="" disabled>Others</option>
+            {% for key, value in countries %}
+            <option value="{{key}}">{{value}}</option>
+            {%endfor%}
+
           </select>
         </td>
       </tr>
