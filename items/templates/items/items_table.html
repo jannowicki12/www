@@ -1,32 +1,46 @@
 {% extends 'base_bulma.html' %}
+{% load static %}
+
+
+{% block h1 %}Items List{% endblock h1 %}
+
 
 {% block main %}
-<table class="table">
-    <thead>
-      <tr>
-        <th colspan="6" style="text-align: center;">Address</th>
-      </tr>
-      <tr>
-        <th>ID</th>
-        <th>name</th>
-        <th>description</th>
-        <th>price</th>
-        <th>code</th>
-        <th>is_available</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in items %}
-        <tr>
-          <td>{{ item.pk }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.code }}</td>
-          <td>{{ item.is_available }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Code</th>
+            <th>Is available</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.code }}</td>
+                <td>{{ item.is_available }}</td>
+                <td>
+                    <form action="" method='post' class="addToCartForm" id="addToCartForm-{{ item.id }}">
+                        {% csrf_token %}
+
+                        <input type="submit" value="Add to cart" class="button">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock main %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/add_to_cart.js' %}"></script>
 {% endblock %}

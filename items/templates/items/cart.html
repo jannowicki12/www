@@ -1,0 +1,28 @@
+
+
+<table>
+    <tr>
+      <th>ID</th>
+      <th>count</th>
+      <th>price</th>
+    </tr>
+    {% for k,v in items.items %}
+    <tr>
+        {% for m in v %}
+        <td>{{m}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    Summary: {{summary}}
+  </table>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="clear-cart">Clear cart</button> 
+        
+    </form>
+  <!-- <button type="submit" name="clear-cart">Clear cart</button>  -->
+  <style>
+    table, th, td {
+  border:1px solid black;
+}
+  </style>
